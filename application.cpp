@@ -11,7 +11,6 @@ Application::~Application()
 
 }
 
-
 int Application::run()
 {
     display = wl_display_connect(nullptr);
@@ -26,13 +25,13 @@ int Application::run()
     }
 
     wl_registry_add_listener(registry, &registery_listener, this);
-    wl_display_dispatch(display);
+    int success_count = wl_display_dispatch(display);
 
 
+    cout << success_count << " events has been processed" << endl;
     cout << "Work finished!" << endl;
     return 0;
 }
-
 
 void Application::onAddWaylandObject
     (
@@ -44,6 +43,8 @@ void Application::onAddWaylandObject
     )
 {
     Application* app = (Application*)client_data;
+
+    cout << "Here is a registry event for " << interface_name << " with id = " << object_id << endl;
 }
 
 void Application::onRemoveWaylandObject
