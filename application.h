@@ -14,10 +14,20 @@ class Application
     protected: wl_registry* registry = nullptr;
 
     protected: wl_compositor* compositor = nullptr;
+    protected: wl_shm* shm = nullptr;
+    protected: wl_shm_pool* shm_pool = nullptr;
+    protected: wl_shell* shell = nullptr;
+    protected: wl_seat* seat = nullptr;
+    //protected: wl_drm* drm = nullptr;
+    protected: wl_output* output = nullptr;
     protected: wl_surface* surface = nullptr;
+    protected: enum ContentBuffer {Front, Back, NumBuffers};
+    protected: wl_buffer* content_buffers[NumBuffers] =
+        {
+            nullptr,
+            nullptr
+        };
     protected: wl_shell_surface* shell_surface = nullptr;
-
-
 
 
 
